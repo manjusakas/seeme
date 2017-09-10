@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../data');
-const crypto = require('crypto');
+//const crypto = require('crypto');
 
 var createToken = function(name, pwd){
-    var hash = crypto.createHash('md5');
-    hash.update(name + pwd + new Date().getTime());
-    return hash.digest('hex');
+    // var hash = crypto.createHash('md5');
+    // hash.update(name + pwd + new Date().getTime());
+    return new Date().getTime();hash.digest('hex');
 }
 
 router.post('/api/login', (req, res) => {
