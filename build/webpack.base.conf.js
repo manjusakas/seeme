@@ -69,10 +69,10 @@ module.exports = {
         test: /\.jade$/,
         loader: "jade"
       },
-      {
-        test: /\.pug$/,
-        loader: 'pug'
-      },
+      // {
+      //   test: /\.pug$/,
+      //   loader: 'pug'
+      // },
       { 
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
         loader: "url-loader?limit=10000&mimetype=application/font-woff" 

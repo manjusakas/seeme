@@ -14,7 +14,7 @@ var webpackConfig = require('./webpack.dev.conf')
 var bodyParser = require('body-parser')
 var cookieParser = require('cookie-parser')
 
-var api = require('../server/api/index')
+//var api = require('../server/api/index')
 
 
 // default port where dev server listens for incoming traffic
@@ -69,7 +69,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-api(app);
+//api(app);
 
 // serve pure static assets
 var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
