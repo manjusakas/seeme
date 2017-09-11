@@ -1,4 +1,4 @@
 const express = require('express');
 const router = express.Router();
-const db = require('data');
+const db = require('../data');
 module.exports = router
