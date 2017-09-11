@@ -8,7 +8,7 @@ function getDbHandle(_type){
 
 router.post('/api/getall_article', (req, res) => {
     var reqParams = req.body;
-    let dbHandle = getDbHandle(reqParams.dbtype);
+    var dbHandle = getDbHandle(reqParams.dbtype);
     if(reqParams.dbtype=='articles'){
         getAllArticle(dbHandle, reqParams);
     }else if(reqParams.dbtype=='prodocs'){
@@ -25,14 +25,14 @@ router.post('/api/getall_article', (req, res) => {
     }
 
     function getAllArticle(dbHandle, reqParams){
-        let page=reqParams.page || 1;
-        let rows=reqParams.rows || 20;
+        var page=reqParams.page || 1;
+        var rows=reqParams.rows || 20;
 
-        let catalog_id=reqParams.catalog_id || '';
+        var catalog_id=reqParams.catalog_id || '';
 
         console.log("page:"+page+",rows:"+rows);
          
-        let query=dbHandle.find({}).sort({article_date: -1});
+        var query=dbHandle.find({}).sort({article_date: -1});
         query.skip((page-1)*rows);
         query.limit(rows);
 
@@ -62,7 +62,7 @@ router.post('/api/getall_article', (req, res) => {
 
 router.post('/api/get_article', (req, res) => {
     var reqParams = req.body;
-    let dbHandle = getDbHandle(reqParams.dbtype);
+    var dbHandle = getDbHandle(reqParams.dbtype);
     var articleId = reqParams._id ;
      
     var query=dbHandle.findById(articleId, function(err,rs){
@@ -76,11 +76,11 @@ router.post('/api/get_article', (req, res) => {
 
 router.post('/api/update_article', (req, res) => {
     var reqParams = req.body;
-    let dbHandle = getDbHandle(reqParams.dbtype);
+    var dbHandle = getDbHandle(reqParams.dbtype);
     var articleId = reqParams._id ;
 
     if(!(articleId)){
-        delete reqParams._id;
+        devare reqParams._id;
         //增加
         console.log(reqParams);
         dbHandle.create(reqParams, function(dberr,dbres){
@@ -99,9 +99,9 @@ router.post('/api/update_article', (req, res) => {
     }
 })
 
-router.post('/api/delete_article', (req, res) => {
+router.post('/api/devare_article', (req, res) => {
     var reqParams = req.body;
-    let dbHandle = getDbHandle(reqParams.dbtype);
+    var dbHandle = getDbHandle(reqParams.dbtype);
     var articleId = reqParams._id ;
      
     var query=dbHandle.findByIdAndRemove(articleId, function(err,rs){

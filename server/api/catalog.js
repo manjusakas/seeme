@@ -10,8 +10,8 @@ function getDbHandle(_type){
 router.post('/api/get_catalog', (req, res) => {
     var reqParams = req.body;
     //state: "publish"
-    let dbHandle = getDbHandle(reqParams.dbtype);
-    let postData = reqParams._id ? {_id: reqParams._id} : {};
+    var dbHandle = getDbHandle(reqParams.dbtype);
+    var postData = reqParams._id ? {_id: reqParams._id} : {};
     dbHandle.find(postData, (err, doc) => {
         if (err) {
             console.log('login find failed')
@@ -34,7 +34,7 @@ router.post('/api/get_catalog', (req, res) => {
 
 router.post('/api/update_catalog', (req, res) => {
     var reqParams = req.body;
-    let dbHandle = getDbHandle(reqParams.dbtype);
+    var dbHandle = getDbHandle(reqParams.dbtype);
 
     if(reqParams._id){
         dbHandle.findByIdAndUpdate(reqParams._id, reqParams, function(dberr,dbres){
@@ -44,7 +44,7 @@ router.post('/api/update_catalog', (req, res) => {
             }
         });
     }else{
-        let postData = {
+        var postData = {
             catalog_name: reqParams.catalog_name,
         }
         dbHandle.create(postData, function(dberr,dbres){
@@ -60,7 +60,7 @@ router.post('/api/update_catalog', (req, res) => {
 
 
 function addDefaultProArticle(_dbHandle, _catalog_id){
-    let postData = [
+    var postData = [
         {
             catalog_id: _catalog_id,
             article_title: '概要设计',
