@@ -60,23 +60,23 @@ router.post('/api/getall_article', (req, res) => {
 })
 
 
-// router.post('/api/get_article', (req, res) => {
-//     var reqParams = req.body;
-//     var dbHandle = getDbHandle1(reqParams.dbtype);
-//     var articleId = reqParams._id ;
+router.post('/api/get_article', (req, res) => {
+    var reqParams = req.body;
+    var dbHandle = getDbHandle(reqParams.dbtype);
+    var articleId = reqParams._id ;
      
-//     var query=dbHandle.findById(articleId, function(err,rs){
-//         if(err){
-//             res.send(err);
-//         }else{
-//             res.send(rs);
-//         }
-//     });
-// })
+    var query=dbHandle.findById(articleId, function(err,rs){
+        if(err){
+            res.send(err);
+        }else{
+            res.send(rs);
+        }
+    });
+})
 
 // router.post('/api/update_article', (req, res) => {
 //     var reqParams = req.body;
-//     var dbHandle = getDbHandle1(reqParams.dbtype);
+//     var dbHandle = getDbHandle(reqParams.dbtype);
 //     var articleId = reqParams._id ;
 
 //     if(!(articleId)){
@@ -99,19 +99,19 @@ router.post('/api/getall_article', (req, res) => {
 //     }
 // })
 
-// router.post('/api/devare_article', (req, res) => {
-//     var reqParams = req.body;
-//     var dbHandle = getDbHandle1(reqParams.dbtype);
-//     var articleId = reqParams._id ;
+router.post('/api/devare_article', (req, res) => {
+    var reqParams = req.body;
+    var dbHandle = getDbHandle(reqParams.dbtype);
+    var articleId = reqParams._id ;
      
-//     var query=dbHandle.findByIdAndRemove(articleId, function(err,rs){
-//         if(err){
-//             res.send(err);
-//         }else{
-//             res.send(rs);
-//         }
-//     });
-// })
+    var query=dbHandle.findByIdAndRemove(articleId, function(err,rs){
+        if(err){
+            res.send(err);
+        }else{
+            res.send(rs);
+        }
+    });
+})
 
 
 
