@@ -14,7 +14,7 @@ var webpackConfig = require('./webpack.dev.conf')
 var bodyParser = require('body-parser')
 var cookieParser = require('cookie-parser')
 
-var api = require('../server/api/index')
+var api = require('../server/api/indexnew')
 
 
 // default port where dev server listens for incoming traffic
