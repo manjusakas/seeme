@@ -2,13 +2,13 @@ const express = require('express');
 const router = express.Router();
 const db = require('../data');
 
-function getDbHandle(_type){
+function getDbHandle1(_type){
     return db[_type];
 }
 
 router.post('/api/getall_article', (req, res) => {
     var reqParams = req.body;
-    var dbHandle = getDbHandle(reqParams.dbtype);
+    var dbHandle = getDbHandle1(reqParams.dbtype);
     if(reqParams.dbtype=='articles'){
         getAllArticle(dbHandle, reqParams);
     }else if(reqParams.dbtype=='prodocs'){
@@ -62,7 +62,7 @@ router.post('/api/getall_article', (req, res) => {
 
 router.post('/api/get_article', (req, res) => {
     var reqParams = req.body;
-    var dbHandle = getDbHandle(reqParams.dbtype);
+    var dbHandle = getDbHandle1(reqParams.dbtype);
     var articleId = reqParams._id ;
      
     var query=dbHandle.findById(articleId, function(err,rs){
@@ -76,7 +76,7 @@ router.post('/api/get_article', (req, res) => {
 
 router.post('/api/update_article', (req, res) => {
     var reqParams = req.body;
-    var dbHandle = getDbHandle(reqParams.dbtype);
+    var dbHandle = getDbHandle1(reqParams.dbtype);
     var articleId = reqParams._id ;
 
     if(!(articleId)){
@@ -101,7 +101,7 @@ router.post('/api/update_article', (req, res) => {
 
 router.post('/api/devare_article', (req, res) => {
     var reqParams = req.body;
-    var dbHandle = getDbHandle(reqParams.dbtype);
+    var dbHandle = getDbHandle1(reqParams.dbtype);
     var articleId = reqParams._id ;
      
     var query=dbHandle.findByIdAndRemove(articleId, function(err,rs){
