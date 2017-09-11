@@ -1,5 +1,4 @@
 const express = require('express');
 const router = express.Router();
-var mongoose = require('mongoose');
-
+const db = require('data');
 module.exports = router
