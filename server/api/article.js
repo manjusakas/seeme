@@ -74,30 +74,30 @@ router.post('/api/get_article', (req, res) => {
     });
 })
 
-// router.post('/api/update_article', (req, res) => {
-//     var reqParams = req.body;
-//     var dbHandle = getDbHandle(reqParams.dbtype);
-//     var articleId = reqParams._id ;
+router.post('/api/update_article', (req, res) => {
+    var reqParams = req.body;
+    var dbHandle = getDbHandle(reqParams.dbtype);
+    var articleId = reqParams._id ;
 
-//     if(!(articleId)){
-//         devare reqParams._id;
-//         //增加
-//         console.log(reqParams);
-//         dbHandle.create(reqParams, function(dberr,dbres){
-//             if(dbres){
-//                 console.log(dbres);
-//                 res.send(dbres._id);
-//             }
-//         });
-//     }else{
-//         //修改
-//         dbHandle.findByIdAndUpdate(articleId, reqParams, function(dberr,dbres){
-//             if(dbres){
-//                 res.send(dbres._id);
-//             }
-//         });
-//     }
-// })
+    if(!(articleId)){
+        delete reqParams._id;
+        //增加
+        console.log(reqParams);
+        dbHandle.create(reqParams, function(dberr,dbres){
+            if(dbres){
+                console.log(dbres);
+                res.send(dbres._id);
+            }
+        });
+    }else{
+        //修改
+        dbHandle.findByIdAndUpdate(articleId, reqParams, function(dberr,dbres){
+            if(dbres){
+                res.send(dbres._id);
+            }
+        });
+    }
+})
 
 router.post('/api/devare_article', (req, res) => {
     var reqParams = req.body;
