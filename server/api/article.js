@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-// const db = require('../data');
+const db = require('../data');
 
-// function getDbHandle1(_type){
-//     return db[_type];
-// }
+function getDbHandle(_type){
+    return db[_type];
+}
 
 // router.post('/api/getall_article', (req, res) => {
 //     var reqParams = req.body;
