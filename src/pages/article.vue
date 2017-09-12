@@ -97,4 +97,7 @@ export default {
     border-bottom: 1px solid #eaeaea;
     padding-bottom: 10px;
 }
+.a_body img{
+    max-width:100%;
+}
 </style>

@@ -5,8 +5,9 @@
             select(v-if='menu_type == "article"' v-model = 'selected_catalogid')
                 option(v-for='tag in catalog_lists' v-bind:value='tag._id') {{tag.catalog_name}}
             button(type='button' @click='updateArticle()') 保存
-        mavon-editor(v-model='article_content', :toolbars="toolbars" )
-    
+
+        mavon-editor(ref="editor" v-model='article_content', :toolbars="toolbars" @imgAdd="$imgAdd" @imgDel="$imgDel" )
+        div#imgsel
 </template>
 <script>
 // Local Registration
@@ -24,6 +25,7 @@ export default {
             catalog_id: this.$route.query.catalogid || null,
             catalog_lists:[],
 
+            img_file: {},
             toolbars: {
                 strikethrough: true, // 中划线
                 mark: true, // 标记
@@ -38,6 +40,7 @@ export default {
                 alignright: true, // 右对齐
                 help: true, // 帮助
                 preview: true, // 预览
+                subfield: true, // 是否需要分栏
               }
         }
     },
@@ -49,6 +52,9 @@ export default {
         this.getAllCatalog()
         this.article_id ? this.getArticle() : ''    
     },
+    // mounted: function() {
+    //     this.$refs.editor.$imgUpdateByUrl(response.body)
+    // },
     methods:{
         getAllCatalog: function(){
             let _this = this;
@@ -70,11 +76,11 @@ export default {
                 article_date: new Date().getTime(),
                 dbtype: this.dbtype
             }
-            console.log(postData)
+
             _this.$http.post('/api/update_article', postData).then(response => {
                 //_this.catalog_lists = response.body;
                 _this.$router.push({ path: 'article', query: { id: response.body}})
-                console.log(response.body);
+
             }, response => {
                 // error callback
             });
@@ -90,9 +96,38 @@ export default {
                 // error callback
             });
         },
+        $imgAdd(pos, $file){
+            var _this = this;
+            this.img_file[pos] = $file;
+
+            // FormData 对象
+            var form = new FormData();
+            form.append("file", $file);                           // 文件对象
+            // XMLHttpRequest 对象
+            this.$http.post('/api/upload_file',form).then(
+                response => {
+                    _this.$refs.editor.$img2Url(pos,response.body)
+                },response => {
+
+                })
+            // var xhr = new XMLHttpRequest();
+            // xhr.open("post", "/api/upload_file", true);
+            // xhr.onload = function () {
+            //     alert("上传完成!");
+            // };
+            // xhr.send(form);
+
+        },
+        $imgDel(pos){
+            delete this.img_file[pos];
+        },
+        uploadimg($e){
+            
+        },
     }
     
 }
+
 </script>
 <style>
 

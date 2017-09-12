@@ -30,6 +30,7 @@ export default {
             }
             if(this.name && this.name){
                 _this.$http.post('/api/login', postData).then(response => {
+
                     if(response.body.code == '0'){
                         alert('登录成功')
                         setTimeout(function(){
@@ -42,6 +43,9 @@ export default {
                     
                 }, response => {
                     // error callback
+                    if(response.body.code == '1'){
+                        alert('用户名密码不正确');
+                    }
                 });
             }else{
                 alert('请填写用户名和密码')
