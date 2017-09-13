@@ -13,7 +13,7 @@ route(app)
 
 app.post('/api/upload_file',(req,res)=>{
     const form = new formidable.IncomingForm();
-    form.uploadDir = __dirname+'/..'+'/static/upload/';//上传文件的保存路径
+    form.uploadDir = __dirname+'/..'+'/dist/static/upload/';//上传文件的保存路径
     form.keepExtensions = true;//保存扩展名
     form.maxFieldsSize = 20 * 1024 * 1024;//上传文件的最大大小
     form.parse(req, (err, fields, files) => {
@@ -23,11 +23,11 @@ app.post('/api/upload_file',(req,res)=>{
         if(files.file){
             var f_path = files.file.path;
             var absolute_path = f_path.substr(f_path.indexOf('/static/upload'));
-            console.log(files.file,  absolute_path)
+            console.log(absolute_path)
             res.send(absolute_path)
-         //    var absolute_path = f_path.substr(f_path.indexOf('\\static\\upload'));
-         //    console.log(files.file,  absolute_path)
-	       	// res.send(absolute_path.split('\\').join('/'))
+            // var absolute_path = f_path.substr(f_path.indexOf('\\static\\upload'));
+            // console.log( absolute_path)
+            // res.send(absolute_path.split('\\').join('/'))
         }
     })
 })
