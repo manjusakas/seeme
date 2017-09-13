@@ -23,7 +23,8 @@ app.post('/api/upload_file',(req,res)=>{
         if(files.file){
             var f_path = files.file.path;
             var absolute_path = f_path.substr(f_path.indexOf('\\static\\upload'));
-            res.send(absolute_path.split('\\').join('/'))
+           
+	       	res.send(absolute_path.split('\\').join('/'))
         }
     })
 })
