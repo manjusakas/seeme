@@ -1,7 +1,7 @@
 <template lang='jade'>
     div.article_lists
-        ul(v-if='art_lists.length')
-            li(v-for='(lists,index) in art_lists' )
+        div(v-if='art_lists.length')
+            div.list(v-for='(lists,index) in art_lists' )
                 h1.a_title(v-text='lists.article_title' @click='toArticle(lists._id)')
                 div.a_date
                     span.mr 编辑日期: {{lists.article_date | time}}
@@ -100,6 +100,7 @@ export default {
             color: @default_hover_color;
 
             .a_title{
+                font-size: 26px;
                 &:hover{
                     color: @default_hover_color;
                     cursor: pointer;
@@ -113,8 +114,11 @@ export default {
             }
             .a_body{
                 margin-top: 10px;
+                ul,ol{
+                    padding-left: 20px;
+                }
             }
-            li{
+            .list{
                 border-bottom: 1px solid #eaeaea;
                 padding-bottom: 10px;
                 margin-bottom: 10px;

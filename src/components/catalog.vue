@@ -176,7 +176,13 @@ export default {
         width: 100%;
         box-sizing: border-box;
         ul{
+            margin: 0px;
             margin-bottom: 20px;
+            margin-left: 0px;
+            padding: 0px;
+        }
+        li{
+            list-style-type: none;
         }
         ul li{
             padding: 12px 10px;

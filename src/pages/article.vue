@@ -89,7 +89,12 @@ export default {
    
 }
 </script>
-<style>
+<style lang='less'>
+.a_head{
+    h1{
+        font-size: 26px;
+    }
+}
 .a_attach{
     color: #999;
     font-size: 12px;
@@ -97,7 +102,14 @@ export default {
     border-bottom: 1px solid #eaeaea;
     padding-bottom: 10px;
 }
-.a_body img{
-    max-width:100%;
+.a_body{
+    ul,ol{
+        padding-left: 20px;
+    }
+    img{
+        max-width:100%;
+        
+    }
 }
+
 </style>

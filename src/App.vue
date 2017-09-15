@@ -11,8 +11,8 @@
                         i.fa.fa-book(title='文章' alt='文章')
                     li(@click='m_projects' v-bind:class="{active: $route.matched[0].name== 'project'}")
                         i.fa.fa-file-code-o(title='项目' alt='项目')
-                    li(@click='m_me' v-bind:class="{active: $route.path== $route.matched[0].name== 'seeme'}")
-                        i.fa.fa-user-o(title='关于我')
+                    //- li(@click='m_me' v-bind:class="{active: $route.path== $route.matched[0].name== 'seeme'}")
+                    //-     i.fa.fa-user-o(title='关于我')
             div.nav_footer
                 button.default_btn(v-if='!hasLogin' @click='m_login') 登录
                 button.cancle_btn(v-if='hasLogin' @click='m_logout') 退出
@@ -73,13 +73,11 @@ export default {
 
 <style lang='less'>
     @import './assets/_common';
-    * {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-    }
+    
     body {
         position: relative;
+        margin: 0px;
+        padding: 0px;
     }
     .page_main{
         padding-left: @nav_width;
@@ -115,8 +113,12 @@ export default {
             }
         }
         .nav_body{
+            ul{
+                padding: 0px;
+            }
             ul li{
                 padding:30px 0px;
+                list-style-type: none;
                 &:hover{
                     cursor: pointer;
                     i{
@@ -151,6 +153,49 @@ export default {
             bottom: 0px;
             padding: 20px 0px;
             
+        }
+    }
+    .ml{
+        margin-left: 10px;
+    }
+    .mr{
+        margin-right: 10px;
+    }
+
+    .main_body{
+        margin-left: @sub_menu_width;
+        position: relative;
+        padding: 1px 40px;
+        //width: 100%;
+        
+    }
+    .default_btn{
+        border: 0px;
+        background: @default_color;
+        color: #fff;
+        border-radius: 2px;
+        padding: 6px 14px;
+        &:hover{
+            cursor: pointer;
+            background: @default_hover_color;
+        }
+        &:visited{
+            boder:0px;
+        }
+    }
+
+    .cancle_btn{
+        border: 0px;
+        background: @default_hover_color;
+        color: #fff;
+        border-radius: 2px;
+        padding: 6px 14px;
+        &:hover{
+            cursor: pointer;
+            background: #5378a2;
+        }
+        &:visited{
+            boder:0px;
         }
     }
 

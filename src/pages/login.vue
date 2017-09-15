@@ -14,8 +14,8 @@ export default {
     name:'login',
     data() {
         return {
-            name:'nina',
-            password:'123456',
+            name:'',
+            password:'',
         }
     },
     mounted:function(){
