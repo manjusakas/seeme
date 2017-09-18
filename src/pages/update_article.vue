@@ -6,8 +6,8 @@
                 option(v-for='tag in catalog_lists' v-bind:value='tag._id') {{tag.catalog_name}}
             button(type='button' @click='updateArticle()') 保存
 
-        mavon-editor(ref="editor" v-model='article_content', :toolbars="toolbars" @imgAdd="$imgAdd" @imgDel="$imgDel" )
-        div#imgsel
+        mavon-editor(ref="editor" v-model='article_content',  @imgAdd="$imgAdd" @imgDel="$imgDel" )
+        //:toolbars="toolbars"
 </template>
 <script>
 // Local Registration
@@ -110,12 +110,6 @@ export default {
                 },response => {
 
                 })
-            // var xhr = new XMLHttpRequest();
-            // xhr.open("post", "/api/upload_file", true);
-            // xhr.onload = function () {
-            //     alert("上传完成!");
-            // };
-            // xhr.send(form);
 
         },
         $imgDel(pos){

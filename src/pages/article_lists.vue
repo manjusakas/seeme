@@ -5,8 +5,9 @@
                 h1.a_title(v-text='lists.article_title' @click='toArticle(lists._id)')
                 div.a_date
                     span.mr 编辑日期: {{lists.article_date | time}}
-                    a.mr(href='javascript:void(0)' v-if='hasLogin' @click='toUpdateArticle(lists._id)') 编辑
-                    a(href='javascript:void(0)' v-if='hasLogin' @click='toDelArticle(lists._id)') 删除
+                    a.ml(href='javascript:void(0)' v-if='hasLogin' @click='toDelArticle(lists._id)') 删除
+                    a.ml(href='javascript:void(0)' v-if='hasLogin' @click='toUpdateArticle(lists._id)') 编辑
+
                 div.a_body(v-compiledMarkdown='lists.article_content')
                 
         span(v-if='!art_lists.length') 该分类下没有文章
@@ -34,7 +35,7 @@ export default {
     directives: {
         compiledMarkdown: {
             bind: function(el,binding){
-                el.innerHTML = marked(binding.value).substr(0,300)
+                el.innerHTML = marked(binding.value).substr(0,200)
             }
         }
     },

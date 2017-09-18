@@ -3,14 +3,9 @@ const router = express.Router();
 const db = require('../data');
 
 
-
-
-
 function getDbHandle(_type){
     return db[_type];
 }
-
-
 
 router.post('/api/getall_article', (req, res) => {
     var reqParams = req.body;
@@ -52,6 +47,7 @@ router.post('/api/getall_article', (req, res) => {
                 res.send(err);
             }else{
                 //计算数据总数
+
                 dbHandle.count({}, function(err, total){
                     var jsonArray={
                         data:rs, 
@@ -105,7 +101,7 @@ router.post('/api/update_article', (req, res) => {
     }
 })
 
-router.post('/api/devare_article', (req, res) => {
+router.post('/api/delete_article', (req, res) => {
     var reqParams = req.body;
     var dbHandle = getDbHandle(reqParams.dbtype);
     var articleId = reqParams._id ;
