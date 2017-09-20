@@ -11,8 +11,8 @@
                         span(v-bind:class='{active_list: current_catalog == "all"}' @click='switchCatalog("all",1)') 全部
                     li(v-for='tag in catalog_lists' ) 
                         span(@click='switchCatalog(tag._id,1)' v-bind:class='{active_list: tag.catalog_id == current_catalog}' ) {{tag.catalog_name}}
-                        i.c_edit.fa.fa-plus(v-if='editable' title='添加文档' @click='addDoc(tag._id)')
-                        i.mr.c_edit.fa.fa-pencil(v-if='editable && menu_type=="project"' @click='editCatalog(tag)')
+                        i.c_edit.fa.fa-plus(v-if='editable && menu_type=="project"' title='添加文档' @click='addDoc(tag._id)')
+                        i.mr.c_edit.fa.fa-pencil(v-if='editable' @click='editCatalog(tag)')
 
                         ul(v-if='menu_type=="project"')
                             li(v-for='doc in prodoc_lists' v-if='doc.catalog_id == tag._id')

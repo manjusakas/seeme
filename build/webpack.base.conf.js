@@ -72,13 +72,15 @@ module.exports = {
       // {
       //   test: /\.pug$/,
       //   loader: 'pug'
-      // },
+      // },``
       { 
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
+        //loader: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         loader: "url-loader?limit=10000&mimetype=application/font-woff" 
       },
       { 
         test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
+        //loader: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         loader: "file-loader" 
       }
     ]
