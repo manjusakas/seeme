@@ -1,7 +1,7 @@
 <template lang='jade'>
     div.article_lists
         div(v-if='art_lists.length')
-            div.list(v-for='(lists,index) in art_lists' )
+            div.list(v-for='(lists,index) in art_lists' v-if='hasLogin || !lists.authority')
                 h1.a_title(v-text='lists.article_title' @click='toArticle(lists._id)')
                 div.a_date
                     span.mr 编辑日期: {{lists.article_date | time}}

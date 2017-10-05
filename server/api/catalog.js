@@ -17,7 +17,7 @@ router.post('/api/get_catalog', (req, res) => {
             console.log('login find failed')
             res.json({code: 500, msg: '查询失败'});
         }
-        console.log(reqParams.dbtype)
+        //console.log(reqParams.dbtype)
 
         if(!doc.length && reqParams.dbtype == 'catalogs'){
             dbHandle.create({'catalog_name':'未分类'},function(dberr,dbres){
@@ -44,10 +44,11 @@ router.post('/api/update_catalog', (req, res) => {
             }
         });
     }else{
-        var postData = {
-            catalog_name: reqParams.catalog_name,
-        }
-        dbHandle.create(postData, function(dberr,dbres){
+        // var postData = {
+        //     catalog_name: reqParams.catalog_name,
+        // }
+        // console.log('----------',reqParams);
+        dbHandle.create(reqParams, function(dberr,dbres){
             console.log(dberr,dbres);
             if(reqParams.dbtype=='prolists'){
                 addDefaultProArticle(db.prodocs ,dbres._id);

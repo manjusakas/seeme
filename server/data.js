@@ -7,6 +7,7 @@ var adminsSchema = new mongoose.Schema({
 
 var catalogSchema = new mongoose.Schema({
     catalog_name: { type:String, unique: true },
+    authority: Number,
     //catalog_id: {type: Number, index: true , unique:true,default: 0}
 })
 
@@ -17,11 +18,13 @@ var articleSchema = new mongoose.Schema({
     article_content: String,
     article_preview: String,  
     article_date: String,
+    authority: Number,
 
 })
 
 var proListsSchema = new mongoose.Schema({
     catalog_name: { type:String, unique: true },
+    authority: Number,
     //catalog_id: {type: Number, index: true , unique:true,default: 0}
 })
 
@@ -31,6 +34,7 @@ var proDoc = new mongoose.Schema({
     article_content: String,
     article_preview: String,  
     article_date: String,
+    authority: Number,
 })
 
 var Models = {

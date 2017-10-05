@@ -9,13 +9,13 @@
                 ul
                     li(v-if='menu_type == "article" '  )
                         span(v-bind:class='{active_list: current_catalog == "all"}' @click='switchCatalog("all",1)') 全部
-                    li(v-for='tag in catalog_lists' ) 
+                    li(v-for='tag in catalog_lists' v-if='hasLogin || !tag.authority') 
                         span(@click='switchCatalog(tag._id,1)' v-bind:class='{active_list: tag.catalog_id == current_catalog}' ) {{tag.catalog_name}}
                         i.c_edit.fa.fa-plus(v-if='editable && menu_type=="project"' title='添加文档' @click='addDoc(tag._id)')
                         i.mr.c_edit.fa.fa-pencil(v-if='editable' @click='editCatalog(tag)')
 
                         ul(v-if='menu_type=="project"')
-                            li(v-for='doc in prodoc_lists' v-if='doc.catalog_id == tag._id')
+                            li(v-for='doc in prodoc_lists' v-if='(doc.catalog_id == tag._id) && (hasLogin || !doc.authority)')
                                 span(v-text='doc.article_title' @click='toProdoc(doc._id)')
 
             .sub_footer
@@ -28,6 +28,9 @@
                     h3 修改文章类别
                 div.modal_body
                     input(v-model='editing_catalog_name')
+                    select(v-model = 'selected_authority')
+                        option(value=0) 公开
+                        option(value=1) 不公开
                     button(@click='saveUpdateCatalog') 保存
                     button(@click='showModal=!showModal') 关闭
 
@@ -51,6 +54,7 @@ export default {
             
             showModal: false,
             editing_catalog_name:'',
+            selected_authority: 0,
         }
     },
     created () {
@@ -105,8 +109,10 @@ export default {
             let postData = {
                 _id: this.editing_catalog_id,
                 catalog_name: this.editing_catalog_name,
+                authority: this.selected_authority,
                 dbtype: this.dbtype,
             }
+            console.log(postData)
             if(!this.editing_catalog_id){
                 delete postData._id
             }

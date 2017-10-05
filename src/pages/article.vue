@@ -29,8 +29,7 @@ export default {
     computed: {
         compiledMarkdown: function () {
             let _this = this;
-
-            return marked(_this.article_data.article_content || '暂无内容', { sanitize: true })
+            return marked(_this.article_data.article_content || '暂无内容')
         }
     },
     created () {

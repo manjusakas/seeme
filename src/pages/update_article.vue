@@ -4,6 +4,9 @@
             input(type='text',placeholder='文章标题', v-model= 'article_title')
             select(v-if='menu_type == "article"' v-model = 'selected_catalogid')
                 option(v-for='tag in catalog_lists' v-bind:value='tag._id') {{tag.catalog_name}}
+            select(v-model = 'selected_authority')
+                option(value=0) 公开
+                option(value=1) 不公开
             button(type='button' @click='updateArticle()') 保存
 
         mavon-editor(ref="editor" v-model='article_content',  @imgAdd="$imgAdd" @imgDel="$imgDel" )
@@ -21,7 +24,8 @@ export default {
             article_id: this.$route.query.id || null,
             article_content: '',
             article_title:'',
-            selected_catalogid:'',
+            selected_catalogid: '',                     //选择的文章分类
+            selected_authority: '',                     //此文章公开还是不公开
             catalog_id: this.$route.query.catalogid || null,
             catalog_lists:[],
 
@@ -52,9 +56,6 @@ export default {
         this.getAllCatalog()
         this.article_id ? this.getArticle() : ''    
     },
-    // mounted: function() {
-    //     this.$refs.editor.$imgUpdateByUrl(response.body)
-    // },
     methods:{
         getAllCatalog: function(){
             let _this = this;
@@ -67,13 +68,14 @@ export default {
         },
         updateArticle: function(){
             let _this = this;
-            let dbtype = 'articles'
+            let dbtype = 'articles';
             let postData = {
                 catalog_id: this.catalog_id || _this.selected_catalogid,
                 _id: _this.article_id || null,
                 article_title: _this.article_title,
                 article_content: _this.article_content,
                 article_date: new Date().getTime(),
+                authority: 0 || _this.selected_authority,
                 dbtype: this.dbtype
             }
 
@@ -92,6 +94,7 @@ export default {
                 _this.article_content = reqData.article_content
                 _this.article_title = reqData.article_title
                 _this.selected_catalogid = reqData.catalog_id
+                _this.selected_authority = reqData.authority || 0
             }, response => {
                 // error callback
             });
